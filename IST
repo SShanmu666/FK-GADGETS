@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FK GADGETS</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      margin: 0;
+      padding: 0;
+      color: #f4f4f9;
+    }
+    header {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #e0f7fa;
+      text-align: center;
+      padding: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border-bottom: 3px solid #00bcd4;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    nav {
+      background-color: #112d32;
+      text-align: center;
+      padding: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: #b2ebf2;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.2s;
+    }
+    nav a:hover {
+      color: #00e5ff;
+      text-decoration: underline;
+      transform: scale(1.05);
+    }
+    section {
+      background-color: rgba(255, 255, 255, 0.1);
+      margin: 25px auto;
+      max-width: 1200px;
+      padding: 25px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    section h2 {
+      color: #00e5ff;
+      border-bottom: 2px solid #00bcd4;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 18px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="email"], input[type="password"], textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #00bcd4;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 1em;
+      transition: all 0.3s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #00e5ff;
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+    }
+    input::placeholder, textarea::placeholder {
+      color: #b2ebf2;
+    }
+    input[type="submit"], button {
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    button:hover, input[type="submit"]:hover {
+      background: линей-gradient(to right, #0072ff, #00c6ff);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .product {
+      border: 1px solid rgba(0, 188, 212, 0.4);
+      padding: 15px;
+      margin: 15px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      display: inline-block;
+      width: 220px;
+      vertical-align: top;
+      transition: transform 0.3s, box-shadow 0.3s;
+      backdrop-filter: blur(5px);
+    }
+    .product:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 188, 212, 0.3);
+      border-color: #00e5ff;
+    }
+    .product img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid rgba(0, 188, 212, 0.3);
+    }
+    .product p {
+      margin: 8px 0;
+      font-size: 1em;
+      color: #e0f7fa;
+    }
+    .product p b {
+      color: #00e5ff;
+    }
+    footer {
+      text-align: center;
+      background: linear-gradient(to right, #0f2027, #203a43);
+      color: #b2ebf2;
+      padding: 15px;
+      margin-top: 30px;
+      font-size: 0.9em;
+      border-top: 3px solid #00bcd4;
+    }
+    #wishlistItems {
+      list-style-type: none;
+      padding: 0;
+    }
+    #wishlistItems li {
+      background: rgba(0, 188, 212, 0.2);
+      margin: 8px 0;
+      padding: 12px;
+      border-radius: 8px;
+      border-left: 4px solid #00e5ff;
+      color: #fff;
+      font-weight: 500;
+    }
+    .review {
+      border-bottom: 1px dashed rgba(0, 188, 212, 0.5);
+      padding: 15px 0;
+      color: #e0f7fa;
+    }
+    .review strong {
+      color: #00e5ff;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product {
+        width: 45%;
+        margin: 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      .product {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FK GADGETS</h1>
+  </header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#wishlist">Wishlist</a>
+    <a href="#reviews">Customer Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </nav>
+  <section id="home">
+    <h2>Welcome to My Online Store</h2>
+    <p>Shop the latest gadgets and accessories here!</p>
+  </section>
+  <section>
+    <h2>User Registration</h2>
+    <form id="registerForm">
+      <input type="text" id="name" placeholder="Full Name"><br>
+      <input type="email" id="email" placeholder="Email"><br>
+      <input type="password" id="password" placeholder="Password"><br>
+      <input type="submit" value="Register">
+    </form>
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="Email"><br>
+      <input type="password" id="loginPass" placeholder="Password"><br>
+      <input type="submit" value="Login">
+    </form>
+  </section>
+  <section id="products">
+    <h2>Our Products</h2>
+    <div class="product">
+      <img src="https://www.mobileana.com/wp-content/uploads/2025/06/Apple-iPhone-17-Pro-Max-Cosmic-Orange.webp" alt="iPhone 17 Pro Max">
+      <p><b>IPHONE 17 PRO MAX</b></p>
+      <p>Price: ₹1,59,999</p>
+      <button onclick="addToWishlist('IPHONE 17 PRO MAX')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_8_TteFE2kKVJtc_SdDYfpiAS0gLnH7ICEg&s" alt="Laptop">
+      <p><b>MAC BOOK PRO LAPTOP</b></p>
+      <p>Price: ₹1,79,999</p>
+      <button onclick="addToWishlist('MAC BOOK PRO LAPTOP')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/61RahTQtAqL._SL1500_.jpg" alt="Headphones">
+      <p><b>APPLE AIRPODS MAX</b></p>
+      <p>Price: ₹20,499</p>
+      <button onclick="addToWishlist('Headphones')">Add to Wishlist</button>
+    </div>
+    <!-- Additional 50 Products -->
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71LRBr1aLNS._SL1500_.jpg" alt="Samsung Galaxy S24 Ultra">
+      <p><b>SAMSUNG GALAXY S24 ULTRA</b></p>
+      <p>Price: ₹1,29,999</p>
+      <button onclick="addToWishlist('SAMSUNG GALAXY S24 ULTRA')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://rukminim2.flixcart.com/image/480/640/xif0q/mobile/t/b/i/-original-imahggexgphcbyja.jpeg?q=90" alt="Google Pixel 9 Pro">
+      <p><b>GOOGLE PIXEL 9 PRO</b></p>
+      <p>Price: ₹99,999</p>
+      <button onclick="addToWishlist('GOOGLE PIXEL 9 PRO')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="data:image/jpeg;base64,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" alt="OnePlus 13">
+      <p><b>ONEPLUS 13</b></p>
+      <p>Price: ₹69,999</p>
+      <button onclick="addToWishlist('ONEPLUS 13')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://inspireonline.in/cdn/shop/files/MacBook_Air_13_in_M3_Silver_PDP_Image_Position_1__en-IN_b7010f62-6a3a-4332-b2b7-2dacdc53c5b1.jpg?v=1730311103&width=823" alt="MacBook Air M3">
+      <p><b>MACBOOK AIR M3</b></p>
+      <p>Price: ₹1,49,999</p>
+      <button onclick="addToWishlist('MACBOOK AIR M3')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/719CAihgtTL.jpg" alt="Dell XPS 15">
+      <p><b>DELL XPS 15</b></p>
+      <p>Price: ₹1,79,000</p>
+      <button onclick="addToWishlist('DELL XPS 15')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/7725051/HP_Spectre_x360_15.6__Coreset_DarkAshSilver_FrontLeft.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=2400" alt="HP Spectre x360">
+      <p><b>HP SPECTRE X360</b></p>
+      <p>Price: ₹1,59,000</p>
+      <button onclick="addToWishlist('HP SPECTRE X360')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/61ZjlBOp+rL.SL1500.jpg" alt="Apple Watch Ultra 2">
+      <p><b>APPLE WATCH ULTRA 2</b></p>
+      <p>Price: ₹89,999</p>
+      <button onclick="addToWishlist('APPLE WATCH ULTRA 2')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://www.designinfo.in/wp-content/uploads/2024/08/Samsung-Galaxy-Watch-7-40mm-Green-BT-11-1-485x485-optimized.webp" alt="Samsung Galaxy Watch 7">
+      <p><b>SAMSUNG GALAXY WATCH 7</b></p>
+      <p>Price: ₹29,999</p>
+      <button onclick="addToWishlist('SAMSUNG GALAXY WATCH 7')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/61mKGzWhVjL.AC_UF1000,1000_QL80.jpg" alt="Sony WH-1000XM5">
+      <p><b>SONY WH-1000XM5 HEADPHONES</b></p>
+      <p>Price: ₹32,999</p>
+      <button onclick="addToWishlist('SONY WH-1000XM5 HEADPHONES')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://www.lg.com/content/dam/channel/wcms/in/images/tv-images/new/OLED65C46LA_2010x1334_1.jpg/jcr:content/renditions/thum-1600x1062.jpeg" alt="LG OLED evo TV 65 inch">
+      <p><b>LG OLED EVO TV 65-INCH</b></p>
+      <p>Price: ₹2,39,999</p>
+      <button onclick="addToWishlist('LG OLED EVO TV 65-INCH')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71+7bU+fkVL.AC_UF1000,1000_QL80.jpg" alt="Sony Bravia 4K 55-inch">
+      <p><b>SONY BRAVIA 4K 55-INCH</b></p>
+      <p>Price: ₹1,09,999</p>
+      <button onclick="addToWishlist('SONY BRAVIA 4K 55-INCH')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/61i8Vjb17SL.SL1500.jpg" alt="Mi QLED 4K 55 inch">
+      <p><b>MI QLED 4K 55-INCH</b></p>
+      <p>Price: ₹79,999</p>
+      <button onclick="addToWishlist('MI QLED 4K 55-INCH')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://5.imimg.com/data5/SELLER/Default/2022/7/DR/HP/KL/155453336/lg-260-litres-2-star-frost-free-inverter-double-door-refrigerator.jpg" alt="LG Double Door Refrigerator">
+      <p><b>LG 260L DOUBLE DOOR FRIDGE</b></p>
+      <p>Price: ₹27,999</p>
+      <button onclick="addToWishlist('LG 260L DOUBLE DOOR FRIDGE')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://media-ik.croma.com/prod/https://media.tatacroma.com/Croma%20Assets/Large%20Appliances/Refrigerator/Images/259362_0_efqtnt.png?tr=w-600" alt="Samsung 324L Convertible Refrigerator">
+      <p><b>SAMSUNG 324L CONVERTIBLE FRIDGE</b></p>
+      <p>Price: ₹33,999</p>
+      <button onclick="addToWishlist('SAMSUNG 324L CONVERTIBLE FRIDGE')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://whirlpoolindia.vtexassets.com/arquivos/ids/166846/190L-IMPC-_Flower-Rain-PRM_Blue_front.jpg?v=638193004589970000">
+      <p><b>WHIRLPOOL 300L 3-STAR FRIDGE</b></p>
+      <p>Price: ₹29,499</p>
+      <button onclick="addToWishlist('WHIRLPOOL 300L 3-STAR FRIDGE')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiNgEF0b8Uxz4GEREagdD8r8FvyX9bRrwLuQ&s" alt="LG 7kg Washing Machine">
+      <p><b>LG 7KG FRONT LOAD WASHING MACHINE</b></p>
+      <p>Price: ₹38,999</p>
+      <button onclick="addToWishlist('LG 7KG FRONT LOAD WASHING MACHINE')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="data:image/jpeg;base64,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" alt="Samsung 8kg Washing Machine">
+      <p><b>SAMSUNG 8KG WASHING MACHINE</b></p>
+      <p>Price: ₹42,999</p>
+      <button onclick="addToWishlist('SAMSUNG 8KG WASHING MACHINE')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://www.jiomart.com/images/product/original/491903221/ifb-6-5-kg-top-loading-fully-automatic-washing-machine-with-aqua-spa-therapy-tl-rew-digital-o491903221-p590441211-0-202108121805.jpeg?im=Resize=(420,420)" alt="IFB 6.5kg Washing Machine">
+      <p><b>IFB 6.5KG FULLY AUTOMATIC WASHER</b></p>
+      <p>Price: ₹35,999</p>
+      <button onclick="addToWishlist('IFB 6.5KG FULLY AUTOMATIC WASHER')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://tse3.mm.bing.net/th/id/OIP.9zzBwDZsgcKlNyyeVt3CPAAAAA?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Daikin 1.5 Ton Split AC">
+      <p><b>DAIKIN 1.5 TON INVERTER SPLIT AC</b></p>
+      <p>Price: ₹47,999</p>
+      <button onclick="addToWishlist('DAIKIN 1.5 TON INVERTER SPLIT AC')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/8172caVu8GL.AC_UF350,350_QL80.jpg" alt="LG 1.5 Ton Dual Inverter AC">
+      <p><b>LG 1.5 TON DUAL INVERTER AC</b></p>
+      <p>Price: ₹45,999</p>
+      <button onclick="addToWishlist('LG 1.5 TON DUAL INVERTER AC')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71nCUoBO4DL.AC_UF350,350_QL80.jpg" alt="LG 1.5 Ton Dual Inverter AC">
+      <p><b>HAIER 1.5 TON DUAL INVERTER AC</b></p>
+      <p>Price: ₹75,999</p>
+      <button onclick="addToWishlist('HAIER 1.5 TON DUAL INVERTER AC')">Add to Wishlist</button>
+    </div>
+    <div class="product">
+      <img src="https://m.media-amazon.com/images/I/71EvynrkPeL.jpg" alt="LG 1.5 Ton Dual Inverter AC">
+      <p><b>BLUE STAR 2.0 TON DUAL INVERTER AC</b></p>
+      <p>Price: ₹89,999</p>
+      <button onclick="addToWishlist('BLUE STAR 2.0 TON DUAL INVERTER AC')">Add to Wishlist</button>
+    </div>
+    <!-- (Add 30 more in the same pattern for total 50 products) -->
+  </section>
+  <section id="wishlist">
+    <h2>Your Wishlist</h2>
+    <ul id="wishlistItems"></ul>
+  </section>
+  <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <form id="reviewForm">
+      <input type="text" id="reviewName" placeholder="Your Name"><br>
+      <textarea id="reviewText" placeholder="Write your review..." rows="4"></textarea><br>
+      <input type="submit" value="Submit Review">
+    </form>
+    <div id="reviewList"></div>
+  </section>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: fkgadgets@gmail.com</p>
+    <p>Phone: +91 9876543210</p>
+  </section>
+  <section id="about">
+    <h2>About Us</h2>
+    <p>This is a simple online shopping website made by a first-year student as a project.</p>
+  </section>
+  <footer>
+    <p>© 2025 My E-Commerce Website</p>
+  </footer>
+  <script>
+    // Registration validation
+    document.getElementById("registerForm").onsubmit = function(e) {
+      e.preventDefault();
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var pass = document.getElementById("password").value;
+      if(name === "" || email === "" || pass === "") {
+        alert("Please fill all fields!");
+      } else {
+        alert("Registration Successful!");
+      }
+    }
+    // Login validation
+    document.getElementById("loginForm").onsubmit = function(e) {
+      e.preventDefault();
+      var email = document.getElementById("loginEmail").value;
+      var pass = document.getElementById("loginPass").value;
+      if(email === "" || pass === "") {
+        alert("Please fill all fields!");
+      } else {
+        alert("Login Successful!");
+      }
+    }
+    // Wishlist functionality
+    function addToWishlist(item) {
+      var wishlist = document.getElementById("wishlistItems");
+      var li = document.createElement("li");
+      li.textContent = item;
+      wishlist.appendChild(li);
+      alert(item + " added to wishlist!");
+    }
+    // Customer review functionality
+    document.getElementById("reviewForm").onsubmit = function(e) {
+      e.preventDefault();
+      var name = document.getElementById("reviewName").value;
+      var text = document.getElementById("reviewText").value;
+      if(name === "" || text === "") {
+        alert("Please fill all fields!");
+        return;
+      }
+      var reviewList = document.getElementById("reviewList");
+      var div = document.createElement("div");
+      div.className = "review";
+      div.innerHTML = "<strong>" + name + ":</strong> <p>" + text + "</p>";
+      reviewList.appendChild(div);
+      document.getElementById("reviewForm").reset();
+    }
+  </script>
+</body>
+</html>
